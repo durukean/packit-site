@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HALVES · A dare</title>
+<meta property="og:title" content="You've been dared in HALVES"><meta property="og:description" content="Three cuts, the same three for both of you. Beat the score.">
+<meta property="og:image" content="https://durukean.github.io/packit-site/halves-icon.png"><meta name="apple-itunes-app" content="app-id=6808102930">
+<style>body{margin:0;background:#FBF0DC;color:#1D2B4A;font-family:"Avenir Next","Helvetica Neue",system-ui,sans-serif;line-height:1.5}main{max-width:480px;margin:0 auto;padding:44px 22px 60px;text-align:center}
+h1{font-family:Futura,"Avenir Next",sans-serif;font-size:32px;margin:4px 0 6px}.k{font-size:11px;letter-spacing:3px;font-weight:800;color:#F26A2E;text-transform:uppercase}
+.card{background:#FFF7E7;border-radius:18px;padding:22px 20px;margin:20px 0;box-shadow:0 8px 0 rgba(29,43,74,.12)}
+.code{font-family:Futura,"Avenir Next",sans-serif;font-weight:800;font-size:34px;letter-spacing:2px;margin:2px 0 4px}.beat{font-size:18px;font-weight:700}
+.btn{display:block;text-decoration:none;font-weight:800;font-size:18px;border-radius:14px;padding:15px 12px;margin:12px 0;box-shadow:0 5px 0 rgba(29,43,74,.18);border:0;width:100%;box-sizing:border-box;font-family:inherit;cursor:pointer}
+.go{background:#F26A2E;color:#fff}.get{background:#1D2B4A;color:#fff}.copy{background:#FFF7E7;color:#1D2B4A;font-size:15px;padding:11px}
+p{font-size:15px;color:#5A4A35;margin:10px 0}</style></head>
+<body><main>
+<div class="k">HALVES</div><h1 id="h">You've been dared</h1>
+<div class="card" id="card"><div class="code" id="code"></div><div class="beat" id="beat"></div></div>
+<a class="btn go" id="open">Open in HALVES</a>
+<a class="btn get" href="https://apps.apple.com/app/id6808102930">Get HALVES on the App Store</a>
+<button class="btn copy" id="copy">Copy the code</button>
+<p id="how">New to HALVES? Install it, then come back to this page and tap Open in HALVES. You can also type the code in the game: More ways to play, then Dare a friend.</p>
+</main>
+<script>
+// The code IS the dare (word-4 digits, optional score): nothing is looked up, nothing is sent anywhere.
+const raw=(new URLSearchParams(location.search).get('c')||'').toUpperCase().replace(/[^A-Z0-9-]/g,'').slice(0,24),
+  m=/^([A-Z]{2,7})-(\d{4})(?:-(\d{1,3}))?$/.exec(raw);
+if(m){document.getElementById('code').textContent=raw;
+  document.getElementById('beat').textContent=m[3]!=null?'Beat '+(+m[3])+' out of 300.':'Three cuts, the same three for both of you.';
+  document.getElementById('open').href='halves://dare/'+raw;
+  document.getElementById('copy').onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText(raw).then(()=>{document.getElementById('copy').textContent='Copied'})}}
+else{document.getElementById('h').textContent='No code here';document.getElementById('card').style.display='none';
+  document.getElementById('open').style.display='none';document.getElementById('copy').style.display='none';
+  document.getElementById('how').textContent='This dare link is missing its code. Ask your friend to send it again, or get the game and make a dare of your own.'}
+</script>
+</body></html>
